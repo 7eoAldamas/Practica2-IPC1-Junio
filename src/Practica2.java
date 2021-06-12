@@ -33,6 +33,6 @@ public class Practica2 {
 
     public static void main(String[] args) {
         //--- Código Ejecutable
-
+        new Practica2("Practica No 2\n");
     }
 }
