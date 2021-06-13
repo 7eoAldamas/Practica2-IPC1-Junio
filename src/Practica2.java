@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Practica2 {
@@ -64,10 +65,10 @@ public class Practica2 {
                 case 2 -> { System.out.println("\n-----       Devolucion de Peliculas       -----"); devolucionDePeliculas(); }
                 case 3 -> { System.out.println("\n-----       Mostrar Info. Peliculas       -----"); mostrarInfoPeliculas(); }
                 case 4 -> { System.out.println("\n-----       Ingreso de Peliculas (Crear)       -----"); crearPeliculaNueva(); }
-                case 5 -> { System.out.println("\n-----       Ordenar Peliculas (A-Z)       -----"); }
+                case 5 -> { System.out.println("\n-----       Ordenar Peliculas (A-Z)       -----"); ordenarPeliculas(); }
                 case 6 -> { System.out.println("\n-----       Ingreso de Clientes (Crear)       -----"); crearClienteNuevo(); }
                 case 7 -> { System.out.println("\n-----       Mostrar Info. Clientes       -----"); mostrarInfoClientes(); }
-                case 8 -> { System.out.println("\n-----       Reportes       -----"); }
+                case 8 -> { System.out.println("\n-----       Reportes       -----"); mostrarReportes(); }
                 case 9 -> { System.out.println("\n-----       Feliz Dia UwU       -----\n");}
                 default -> {System.out.println("\n-----       Error - Opcion Invalida :c       -----\n");}
             }
@@ -180,8 +181,38 @@ public class Practica2 {
                     "\t  Categoria: ["+categorias[i]+"] "+
                     "\t  Disponible: ["+disponible[i]+"] ");
         }
+        System.out.println("");
     }
 
+    //--- Método de Ordenación
+    public void ordenarPeliculas(){
+        String aux;
+
+        System.out.println("*-* Catalogo de Peliculas *-*");
+        if (nuevoIDP != 0) {
+            for (int i = 0; i < nuevoIDP-1; i++) { //Ordenar Películas (A-Z)
+                for (int j = i+1; j < nuevoIDP; j++) {
+                    if (nombresPeliculas[i].compareTo(nombresPeliculas[j]) > 0){
+                        aux = nombresPeliculas[i];
+                        nombresPeliculas[i] = nombresPeliculas[j];
+                        nombresPeliculas[j] = aux;
+                    }
+                }
+            }
+
+            for (int i = 0; i < TAMANIO_MAXIMO; i++) { //Mostrar Películas (A-Z)
+                if (nombresPeliculas[i] == null){
+                    continue;
+                }
+                System.out.println("Nombre: ["+nombresPeliculas[i]+"]");
+            }
+            System.out.println("");
+
+
+        } else {
+            System.out.println("* Aun no hay registro de peliculas *\n");
+        }
+    }
 
     //--- Método para crear Clientes
     public void crearClienteNuevo(){
@@ -225,6 +256,12 @@ public class Practica2 {
                     "\tTelefono: ["+telefonos[i]+"] "+
                     "\tPelicula Prestada: ["+prestados[i]+"] ");
         }
+        System.out.println("");
+    }
+
+    //--- Método para mostrar Reportes
+    public void mostrarReportes(){
+        System.out.println("\n-----       Menu Reportes       -----");
     }
 
     //-------------------------------------------
@@ -319,8 +356,8 @@ public class Practica2 {
 
     //--- Método complemento para retornar una película prestada/rentada
     public void asignarDevolucion(int idCliente, int idPelicula){
-        prestados[encontrarIDCliente(idCliente)] = false;
-        disponible[encontrarIDPelicula(idPelicula)] = true;
+        prestados[encontrarIDCliente(idCliente)] = false; //Cambiamos el estado de préstamos del cliente
+        disponible[encontrarIDPelicula(idPelicula)] = true; //Cambiamos el estado de préstamo de la película
     }
 
 //======================================================================================================================
