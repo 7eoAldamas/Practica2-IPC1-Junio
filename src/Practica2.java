@@ -62,7 +62,7 @@ public class Practica2 {
             switch (opcion) {
                 case 1 -> { System.out.println("\n-----       Prestamo de Peliculas       -----"); }
                 case 2 -> { System.out.println("\n-----       Devolucion de Peliculas       -----"); }
-                case 3 -> { System.out.println("\n-----       Mostrar Info. Peliculas       -----"); }
+                case 3 -> { System.out.println("\n-----       Mostrar Info. Peliculas       -----"); mostrarInfoPeliculas(); }
                 case 4 -> { System.out.println("\n-----       Ingreso de Peliculas (Crear)       -----"); crearPeliculaNueva(); }
                 case 5 -> { System.out.println("\n-----       Ordenar Peliculas (A-Z)       -----"); }
                 case 6 -> { System.out.println("\n-----       Ingreso de Clientes (Crear)       -----"); crearClienteNuevo();}
@@ -143,7 +143,15 @@ public class Practica2 {
 
     //--- Método para mostrar información de Películas
     public void mostrarInfoPeliculas(){
-
+        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
+            if (nombresPeliculas[i] == null){
+                continue;
+            }
+            System.out.println("ID ["+idPeliculas[i]+"]" +
+                    "\tNombre: ["+nombresPeliculas[i]+"]" +
+                    "\t  Categoria: ["+categorias[i]+"] "+
+                    "\t  Disponible: ["+disponible[i]+"] ");
+        }
     }
 
 
