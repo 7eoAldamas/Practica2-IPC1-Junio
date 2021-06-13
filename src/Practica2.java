@@ -279,15 +279,64 @@ public class Practica2 {
             opcion = sc.nextInt();
 
             switch (opcion) {
-                case 1 -> { System.out.println("\n-----       Cantidad de Peliculas por Categoria       -----"); }
-                case 2 -> { System.out.println("\n-----       Peliculas de una Categoria en especifico       -----"); }
-                case 3 -> { System.out.println("\n-----       Cantidad de Peliculas Prestadas       -----"); }
-                case 4 -> { System.out.println("\n-----       Pelicula mas prestada       -----"); }
-                case 5 -> { System.out.println("\n-----       Pelicula menos prestada       -----"); }
+                case 1 -> { System.out.println("\n-----       Cantidad de Peliculas por Categoria       -----"); cantidadPeliCategorias(); }
+                case 2 -> { System.out.println("\n-----       Peliculas de una Categoria en especifico       -----"); peliculaEnCategoriaEspe(); }
+                case 3 -> { System.out.println("\n-----       Cantidad de Peliculas Prestadas       -----"); cantidadPeliPrestadas(); }
+                case 4 -> { System.out.println("\n-----       Pelicula mas prestada       -----"); peliculaMasPrestada(); }
+                case 5 -> { System.out.println("\n-----       Pelicula menos prestada       -----"); pelicularMenosPrestada(); }
                 case 6 -> { System.out.println("\n-----       Regresando       -----"); }
                 default -> {System.out.println("\n-----       Error - Opcion Invalida :c       -----\n");}
             }
         }while (opcion != 6);
+    }
+
+    //--- Método para la cantidad de películas por cada categoría
+    public void cantidadPeliCategorias(){
+        String aux;
+
+        if (nuevaCate != 0) {
+            for (int i = 0; i < nuevaCate - 1; i++) { //Ordenar Películas (A-Z)
+                for (int j = i + 1; j < nuevaCate; j++) {
+                    if (categorias[i].compareTo(categorias[j]) > 0) {
+                        aux = categorias[i];
+                        categorias[i] = categorias[j];
+                        categorias[j] = aux;
+                    }
+                }
+            }
+
+            for (int i = 0; i < TAMANIO_MAXIMO; i++) { //Mostrar Películas (A-Z)
+                if (nombresPeliculas[i] == null) {
+                    continue;
+                }
+                System.out.println("Nombre: [" + nombresPeliculas[i] + "]");
+            }
+            System.out.println("");
+
+
+        } else {
+            System.out.println("* Aun no hay registro de peliculas *\n");
+        }
+    }
+
+    //--- Método para las películas dentro de una categoría
+    public void peliculaEnCategoriaEspe(){
+
+    }
+
+    //--- Método para establecer la cantidad de películas prestadas
+    public void cantidadPeliPrestadas(){
+
+    }
+
+    //--- Método de las películas más prestadas
+    public void peliculaMasPrestada(){
+
+    }
+
+    //--- Método de las películas menos prestadas
+    public void pelicularMenosPrestada(){
+
     }
 
     //------------------------------------------- MAIN
