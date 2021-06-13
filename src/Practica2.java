@@ -61,11 +61,11 @@ public class Practica2 {
 
             switch (opcion) {
                 case 1 -> { System.out.println("\n-----       Prestamo de Peliculas       -----"); prestamosDePeliculas(); }
-                case 2 -> { System.out.println("\n-----       Devolucion de Peliculas       -----"); }
+                case 2 -> { System.out.println("\n-----       Devolucion de Peliculas       -----"); devolucionDePeliculas(); }
                 case 3 -> { System.out.println("\n-----       Mostrar Info. Peliculas       -----"); mostrarInfoPeliculas(); }
                 case 4 -> { System.out.println("\n-----       Ingreso de Peliculas (Crear)       -----"); crearPeliculaNueva(); }
                 case 5 -> { System.out.println("\n-----       Ordenar Peliculas (A-Z)       -----"); }
-                case 6 -> { System.out.println("\n-----       Ingreso de Clientes (Crear)       -----"); crearClienteNuevo();}
+                case 6 -> { System.out.println("\n-----       Ingreso de Clientes (Crear)       -----"); crearClienteNuevo(); }
                 case 7 -> { System.out.println("\n-----       Mostrar Info. Clientes       -----"); mostrarInfoClientes(); }
                 case 8 -> { System.out.println("\n-----       Reportes       -----"); }
                 case 9 -> { System.out.println("\n-----       Feliz Dia UwU       -----\n");}
@@ -82,7 +82,7 @@ public class Practica2 {
         if (nuevoIDP != 0){ //Si hay películas
             System.out.println("* Lista de Peliculas Disponibles *");
             for (int i = 0; i < TAMANIO_MAXIMO; i++) {
-                if (disponible[i]){
+                if (disponible[i]){ // Si disponible = true
                     System.out.println("ID ["+idPeliculas[i]+"]" +
                             "\tNombre: ["+nombresPeliculas[i]+"]" +
                             "\t  Categoria: ["+categorias[i]+"] "+
@@ -111,6 +111,33 @@ public class Practica2 {
             System.out.println("* Aun no hay registro de peliculas *\n");
         }
     }
+
+    //--- Método para la Devolución de Películas
+    public void devolucionDePeliculas(){
+        int idCliente;
+        int idPelicula;
+
+        if (nuevoIDCliente != 0) {
+            System.out.println("* Devolucion de peliculas - Ingrese los siguintes datos *");
+            System.out.print("* ID Cliente: ");
+            idCliente = sc.nextInt();
+            if (verificarCliente(idCliente)) {
+                if (verificarExistenciaRenta(idCliente)) {
+                    System.out.println("* Cliente no cuenta con un prestamo * - No necesita devolver nada -");
+                } else {
+                    System.out.println("* ID de la pelicula: ");
+                    idPelicula = sc.nextInt();
+                    asignarDevolucion(idCliente, idPelicula);
+                    System.out.println("*-* Devolucion completada *-*");
+                }
+            } else {
+                System.out.println("* El ID no esta registrado *\n");
+            }
+        } else {
+            System.out.println("* Aun no hay registro de Clientes *\n");
+        }
+    }
+
 
     //--- Método para crear Peliculas
     public void crearPeliculaNueva(){
@@ -231,28 +258,7 @@ public class Practica2 {
         return idRepetido;
     }
 
-    public boolean verificarExistenciaPelicula(int id) {
-        boolean idExisteP = false;
-
-        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
-            if (idPeliculas[i] == id) {
-                idExisteP = true;
-            }
-        }
-        return idExisteP;
-    }
-
-    public boolean verificarExistenciaCliente(int id){
-        boolean idExisteC = false;
-
-        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
-            if (idClientes[i] == id){
-                idExisteC = true;
-            }
-        }
-        return  idExisteC;
-    }
-
+    //--- Método para verificar si Cliente ya cuenta con una película rentada
     public boolean verificarExistenciaRenta(int id){
         boolean existeRenta = false;
 
@@ -265,21 +271,6 @@ public class Practica2 {
         }
         return existeRenta;
     }
-
-    /*
-    public int clienteExistente(int id){
-        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
-            if (idCliente[i] == id) { //Si ID existe
-                if (!prestados[i]) { //Prestados - False (No tiene películas prestadas)
-                    return i; //Retornamos la posición del cliente
-                } else { //Prestados - True (Si tiene películas prestadas)
-                    return 33; //Retornamos un valor random
-                }
-            }
-        }
-        return -1; //Si ID no existe
-    }
-     */
 
     //--- Método complemento para crear Clientes (Método Auxiliar)
     public void asignarCliente(int id, String nombre, int telefono){
@@ -326,6 +317,13 @@ public class Practica2 {
         }
     }
 
+    //--- Método complemento para retornar una película prestada/rentada
+    public void asignarDevolucion(int idCliente, int idPelicula){
+        prestados[encontrarIDCliente(idCliente)] = false;
+        disponible[encontrarIDPelicula(idPelicula)] = true;
+    }
+
+//======================================================================================================================
     //--- Método para devolver el ID del Cliente
     public int encontrarIDCliente(int id){
         int idCliente = 0;
