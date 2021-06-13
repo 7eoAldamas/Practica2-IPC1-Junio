@@ -60,7 +60,7 @@ public class Practica2 {
             opcion = sc.nextInt();
 
             switch (opcion) {
-                case 1 -> { System.out.println("\n-----       Prestamo de Peliculas       -----"); }
+                case 1 -> { System.out.println("\n-----       Prestamo de Peliculas       -----"); prestamosDePeliculas(); }
                 case 2 -> { System.out.println("\n-----       Devolucion de Peliculas       -----"); }
                 case 3 -> { System.out.println("\n-----       Mostrar Info. Peliculas       -----"); mostrarInfoPeliculas(); }
                 case 4 -> { System.out.println("\n-----       Ingreso de Peliculas (Crear)       -----"); crearPeliculaNueva(); }
@@ -80,7 +80,7 @@ public class Practica2 {
         int idPelicula, cantidadDias;
 
         if (nuevoIDP != 0){ //Si hay películas
-            System.out.println("* Lista de Peliculas *");
+            System.out.println("* Lista de Peliculas Disponibles *");
             for (int i = 0; i < TAMANIO_MAXIMO; i++) {
                 if (disponible[i]){
                     System.out.println("ID ["+idPeliculas[i]+"]" +
@@ -92,22 +92,23 @@ public class Practica2 {
 
             System.out.println("\n* Ingrese el ID del cliente que prestara la pelicula: ");
             idCliente = sc.nextInt();
-            if (clienteExistente(idCliente) != -1){ //Si ID existe
-                if (clienteExistente(idCliente) != 33){ //Si ID (Cliente) no tiene prestada ningúna película
+            if (verificarCliente(idCliente)){ //Si ID existe
+                if (verificarExistenciaRenta(idCliente)){ //Si ID (Cliente) no tiene prestada ningúna película
                     System.out.print("* ID de la pelicula: ");
                     idPelicula = sc.nextInt();
                     System.out.println("* Cantidad de dias de prestamo: ");
                     cantidadDias = sc.nextInt();
-
+                    asignarPrestamo(idCliente, idPelicula, cantidadDias);
+                    System.out.println("*-*  Prestamo Completado  *-*");
                 }else { //Si ID (Cliente) si tiene prestada ningúna película
-
+                    System.out.println("* Cliente ya cuenta con una pelicula rentada *");
                 }
             } else { //Si ID no existe
                 System.out.println("* El ID no esta registrado *\n");
             }
 
         } else {
-
+            System.out.println("* Aun no hay registro de peliculas *\n");
         }
     }
 
@@ -230,7 +231,42 @@ public class Practica2 {
         return idRepetido;
     }
 
+    public boolean verificarExistenciaPelicula(int id) {
+        boolean idExisteP = false;
 
+        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
+            if (idPeliculas[i] == id) {
+                idExisteP = true;
+            }
+        }
+        return idExisteP;
+    }
+
+    public boolean verificarExistenciaCliente(int id){
+        boolean idExisteC = false;
+
+        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
+            if (idClientes[i] == id){
+                idExisteC = true;
+            }
+        }
+        return  idExisteC;
+    }
+
+    public boolean verificarExistenciaRenta(int id){
+        boolean existeRenta = false;
+
+        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
+            if (idClientes[i] == id){
+                if (!prestados[i]){
+                    existeRenta = true;
+                }
+            }
+        }
+        return existeRenta;
+    }
+
+    /*
     public int clienteExistente(int id){
         for (int i = 0; i < TAMANIO_MAXIMO; i++) {
             if (idCliente[i] == id) { //Si ID existe
@@ -243,6 +279,7 @@ public class Practica2 {
         }
         return -1; //Si ID no existe
     }
+     */
 
     //--- Método complemento para crear Clientes (Método Auxiliar)
     public void asignarCliente(int id, String nombre, int telefono){
@@ -271,6 +308,44 @@ public class Practica2 {
         if (nuevoDispo < TAMANIO_MAXIMO){
             this.disponible[nuevoDispo++] = true;
         }
+    }
+
+    //--- Método complemento para crear el Préstamo de Películas
+    public void asignarPrestamo(int idCliente, int idPelicula, int canditidadDias){
+        prestados[encontrarIDCliente(idCliente)] = true; //Cambiamos el estado de préstamo del cliente
+        disponible[encontrarIDPelicula(idPelicula)] = false; //Cambiamos el estado de préstamo de la película
+
+        if (nuevoIDCliente < TAMANIO_MAXIMO){
+            this.idCliente[nuevoIDCliente++] = idCliente;
+        }
+        if (nuevoIDPelicula < TAMANIO_MAXIMO){
+            this.idPelicula[nuevoIDPelicula++] = idPelicula;
+        }
+        if (nuevoCantDias < TAMANIO_MAXIMO){
+            this.cantDias[nuevoCantDias++] = canditidadDias;
+        }
+    }
+
+    //--- Método para devolver el ID del Cliente
+    public int encontrarIDCliente(int id){
+        int idCliente = 0;
+        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
+            if (idClientes[i] == id){
+                idCliente = i;
+            }
+        }
+        return idCliente;
+    }
+
+    //--- Método para devolver el ID de la Película
+    public int encontrarIDPelicula(int id){
+        int idPelicula = 0;
+        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
+            if (idPeliculas[i] == id){
+                idPelicula = i;
+            }
+        }
+        return idPelicula;
     }
 
 }
