@@ -304,7 +304,6 @@ public class Practica2 {
                         contador++;
                     }
                 }
-
                 if (categoAux[i] == null){ //Omitimos si en la categoría existe un "null" - No mostramos
                     continue;
                 }
