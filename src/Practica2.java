@@ -292,7 +292,6 @@ public class Practica2 {
 
     //--- Método para la cantidad de películas por cada categoría
     public void cantidadPeliCategorias(){
-        String[] categoAux = new String[TAMANIO_MAXIMO];
         int contador;
 
         if (nuevaCate != 0) {
@@ -300,17 +299,17 @@ public class Practica2 {
                 contador = 0;
                 for (int j = 0; j < nuevaCate; j++) {
                     if (categorias[i].equals(categorias[j])){ //Si las categorías son iguales
-                        categoAux[j] = categorias[j];
+                        //categoAux[j] = categorias[j];
                         contador++;
                     }
                 }
-                if (categoAux[i] == null){ //Omitimos si en la categoría existe un "null" - No mostramos
+                if (categorias[i] == null){ //Omitimos si en la categoría existe un "null" - No mostramos
                     continue;
                 }
-                if (categoAux[i].equals(categoAux[i+1])){ //Si se repite igual omitimos
+                if (categorias[i].equals(categorias[i+1])){ //Si se repite igual omitimos
                     continue;
                 }
-                System.out.println("*-* Categoria - ["+categoAux[i]+"] - Cantidad Pelicula ["+contador+"] ");
+                System.out.println("*-* Categoria - ["+categorias[i]+"] - Cantidad Pelicula ["+contador+"] ");
             }
         } else {
             System.out.println("* Aun no hay registro de peliculas *\n");
