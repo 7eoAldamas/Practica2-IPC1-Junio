@@ -57,14 +57,14 @@ public class Practica2 {
             opcion = sc.nextInt();
 
             switch (opcion) {
-                case 1 -> { System.out.println("\n-----       Prestamo de Peliculas       -----\n"); }
-                case 2 -> { System.out.println("\n-----       Devolucion de Peliculas       -----\n"); }
-                case 3 -> { System.out.println("\n-----       Mostrar Info. Peliculas       -----\n"); }
-                case 4 -> { System.out.println("\n-----       Ingreso de Peliculas (Crear)       -----\n"); }
-                case 5 -> { System.out.println("\n-----       Ordenar Peliculas (A-Z)       -----\n"); }
-                case 6 -> { System.out.println("\n-----       Ingreso de Clientes (Crear)       -----\n"); crearClienteNuevo();}
-                case 7 -> { System.out.println("\n-----       Mostrar Info. Clientes       -----\n"); }
-                case 8 -> { System.out.println("\n-----       Reportes       -----\n"); }
+                case 1 -> { System.out.println("\n-----       Prestamo de Peliculas       -----"); }
+                case 2 -> { System.out.println("\n-----       Devolucion de Peliculas       -----"); }
+                case 3 -> { System.out.println("\n-----       Mostrar Info. Peliculas       -----"); }
+                case 4 -> { System.out.println("\n-----       Ingreso de Peliculas (Crear)       -----"); }
+                case 5 -> { System.out.println("\n-----       Ordenar Peliculas (A-Z)       -----"); }
+                case 6 -> { System.out.println("\n-----       Ingreso de Clientes (Crear)       -----"); crearClienteNuevo();}
+                case 7 -> { System.out.println("\n-----       Mostrar Info. Clientes       -----"); mostrarInfoClientes(); }
+                case 8 -> { System.out.println("\n-----       Reportes       -----"); }
                 case 9 -> { System.out.println("\n-----       Feliz Dia UwU       -----\n");}
                 default -> {System.out.println("\n-----       Error - Opcion Invalida :c       -----\n");}
             }
@@ -77,7 +77,6 @@ public class Practica2 {
 
         do {
 
-            System.out.println("-----       ------       -----");
             System.out.print("Id: ");
             id = sc.nextInt();
             sc.nextLine();
@@ -100,6 +99,18 @@ public class Practica2 {
 
         }while (opcion.equals("S"));
 
+    }
+
+    public void mostrarInfoClientes(){
+        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
+            if (nombres[i] == null){
+                continue;
+            }
+            System.out.println("ID ["+idClientes[i]+"]" +
+                    "\tNombre: ["+nombres[i]+"]" +
+                    "\tTelefono: ["+telefonos[i]+"] "+
+                    "\tPelicula Prestada: ["+prestados[i]+"] ");
+        }
     }
 
     public void asignarCliente(int id, String nombre, int telefono){
