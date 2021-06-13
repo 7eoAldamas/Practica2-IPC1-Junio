@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Practica2 {
@@ -74,7 +73,7 @@ public class Practica2 {
             }
         }while (opcion != 9);
     }
-
+//====================================================================================================================== Prestar
     //--- Método para Prestamos de Películas
     public void prestamosDePeliculas(){
         int idCliente;
@@ -113,6 +112,7 @@ public class Practica2 {
         }
     }
 
+//====================================================================================================================== Devolución
     //--- Método para la Devolución de Películas
     public void devolucionDePeliculas(){
         int idCliente;
@@ -139,7 +139,7 @@ public class Practica2 {
         }
     }
 
-
+//====================================================================================================================== Películas
     //--- Método para crear Peliculas
     public void crearPeliculaNueva(){
         String nombre, opcion, categoria;
@@ -184,15 +184,16 @@ public class Practica2 {
         System.out.println("");
     }
 
-    //--- Método de Ordenación
-    public void ordenarPeliculas(){
+//====================================================================================================================== Ordenar
+    //--- Método para Ordenar las Películas (A-Z)
+    public void ordenarPeliculas() {
         String aux;
 
         System.out.println("*-* Catalogo de Peliculas *-*");
         if (nuevoIDP != 0) {
-            for (int i = 0; i < nuevoIDP-1; i++) { //Ordenar Películas (A-Z)
-                for (int j = i+1; j < nuevoIDP; j++) {
-                    if (nombresPeliculas[i].compareTo(nombresPeliculas[j]) > 0){
+            for (int i = 0; i < nuevoIDP - 1; i++) { //Ordenar Películas (A-Z)
+                for (int j = i + 1; j < nuevoIDP; j++) {
+                    if (nombresPeliculas[i].compareTo(nombresPeliculas[j]) > 0) {
                         aux = nombresPeliculas[i];
                         nombresPeliculas[i] = nombresPeliculas[j];
                         nombresPeliculas[j] = aux;
@@ -201,10 +202,10 @@ public class Practica2 {
             }
 
             for (int i = 0; i < TAMANIO_MAXIMO; i++) { //Mostrar Películas (A-Z)
-                if (nombresPeliculas[i] == null){
+                if (nombresPeliculas[i] == null) {
                     continue;
                 }
-                System.out.println("Nombre: ["+nombresPeliculas[i]+"]");
+                System.out.println("Nombre: [" + nombresPeliculas[i] + "]");
             }
             System.out.println("");
 
@@ -214,6 +215,7 @@ public class Practica2 {
         }
     }
 
+//====================================================================================================================== Clientes
     //--- Método para crear Clientes
     public void crearClienteNuevo(){
         String nombre, opcion;
@@ -258,18 +260,42 @@ public class Practica2 {
         }
         System.out.println("");
     }
-
+//====================================================================================================================== Reportes
     //--- Método para mostrar Reportes
     public void mostrarReportes(){
-        System.out.println("\n-----       Menu Reportes       -----");
+        int opcion;
+
+        do {
+
+            System.out.println("\n-----       Menu Reportes       -----");
+            System.out.println("1.  * Cantidad de Peliculas por Categoria *");
+            System.out.println("2.  * Peliculas de una Categoria en especifico *");
+            System.out.println("3.  * Cantidad de Peliculas Prestadas *");
+            System.out.println("4.  * Pelicula mas prestada *");
+            System.out.println("5.  * Pelicula menos prestada *");
+            System.out.println("6.  * Regresar *");
+
+            System.out.print("Opcion: ");
+            opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1 -> { System.out.println("\n-----       Cantidad de Peliculas por Categoria       -----"); }
+                case 2 -> { System.out.println("\n-----       Peliculas de una Categoria en especifico       -----"); }
+                case 3 -> { System.out.println("\n-----       Cantidad de Peliculas Prestadas       -----"); }
+                case 4 -> { System.out.println("\n-----       Pelicula mas prestada       -----"); }
+                case 5 -> { System.out.println("\n-----       Pelicula menos prestada       -----"); }
+                case 6 -> { System.out.println("\n-----       Regresando       -----"); }
+                default -> {System.out.println("\n-----       Error - Opcion Invalida :c       -----\n");}
+            }
+        }while (opcion != 6);
     }
 
-    //-------------------------------------------
+    //------------------------------------------- MAIN
     public static void main(String[] args) {
         //--- Código Ejecutable
         new Practica2("Practica No 2\n");
     }
-    //-------------------------------------------
+    //------------------------------------------- MAIN
 
     //--- Método para verificar el ID - Clientes
     public boolean verificarCliente(int id){
@@ -309,6 +335,7 @@ public class Practica2 {
         return existeRenta;
     }
 
+//====================================================================================================================== Complementos
     //--- Método complemento para crear Clientes (Método Auxiliar)
     public void asignarCliente(int id, String nombre, int telefono){
         if (nuevoID < TAMANIO_MAXIMO){
@@ -320,6 +347,7 @@ public class Practica2 {
         if (nuevoTel < TAMANIO_MAXIMO){
             this.telefonos[nuevoTel++] = telefono;
         }
+        contadorClientes++;
     }
 
     //--- Método complemento para crear Peliculas (Método Auxiliar)
@@ -336,6 +364,7 @@ public class Practica2 {
         if (nuevoDispo < TAMANIO_MAXIMO){
             this.disponible[nuevoDispo++] = true;
         }
+        contadorPeliculas++;
     }
 
     //--- Método complemento para crear el Préstamo de Películas
@@ -352,6 +381,7 @@ public class Practica2 {
         if (nuevoCantDias < TAMANIO_MAXIMO){
             this.cantDias[nuevoCantDias++] = canditidadDias;
         }
+        contadorPrestamos++;
     }
 
     //--- Método complemento para retornar una película prestada/rentada
