@@ -510,14 +510,5 @@ public class Practica2 {
         }
         return idPelicula;
     }
-
-    public int encontrarIDPelicula(int[] id){
-        int idPelicula = 0;
-        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
-            if (idPeliculas[i] == id[i]){
-                idPelicula = i;
-            }
-        }
-        return idPelicula;
-    }
+    
 }
