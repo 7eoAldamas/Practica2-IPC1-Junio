@@ -342,7 +342,17 @@ public class Practica2 {
 
     //--- Método para establecer la cantidad de películas prestadas
     public void cantidadPeliPrestadas(){
-
+        System.out.println("* Peliculas Prestadas Info: ");
+        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
+            if (idCliente[i] == 0){
+                continue;
+            }
+            System.out.println("ID Cliente ["+idCliente[i]+"]" +
+                    "\tID Pelicula: ["+idPelicula[i]+"]" +
+                    "\t Pelicula: ["+nombresPeliculas[encontrarIDPelicula(idPelicula[i])]+"]" +
+                    "\tCantidad de Dias: ["+cantDias[i]+"] ");
+        }
+        System.out.println("");
     }
 
     //--- Método de las películas más prestadas
@@ -490,4 +500,13 @@ public class Practica2 {
         return idPelicula;
     }
 
+    public int encontrarIDPelicula(int[] id){
+        int idPelicula = 0;
+        for (int i = 0; i < TAMANIO_MAXIMO; i++) {
+            if (idPeliculas[i] == id[i]){
+                idPelicula = i;
+            }
+        }
+        return idPelicula;
+    }
 }
