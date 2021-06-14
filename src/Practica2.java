@@ -304,7 +304,6 @@ public class Practica2 {
                 contador = 0;
                 for (int j = 0; j < nuevaCate; j++) {
                     if (cateAux[i].equals(categorias[j])){
-                        cateAux[i] = categorias[i];
                         contador++;
                     }
                 }
@@ -323,8 +322,19 @@ public class Practica2 {
 
     //--- Método para las películas dentro de una categoría
     public void peliculaEnCategoriaEspe(){
-        if (nuevaCate != 0) {
+        sc = new Scanner(System.in);
+        String cateAux = "";
 
+        if (nuevaCate != 0) {
+            System.out.print("* Categoria: ");
+            cateAux = sc.nextLine();
+            System.out.println("*-* Categoria elegida ["+cateAux+"] ");
+            System.out.println("*-* Lista: ");
+            for (int i = 0; i < nuevaCate; i++) {
+                if (categorias[i].equals(cateAux)){
+                    System.out.println("     "+nombresPeliculas[i]);
+                }
+            }
         } else {
             System.out.println("* Aun no hay registro de peliculas *\n");
         }
