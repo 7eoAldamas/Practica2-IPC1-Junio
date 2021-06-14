@@ -304,13 +304,14 @@ public class Practica2 {
                 contador = 0;
                 for (int j = 0; j < nuevaCate; j++) {
                     if (cateAux[i].equals(categorias[j])){
+                        cateAux[i] = categorias[i];
                         contador++;
                     }
                 }
                 if (cateAux[i] == null){
                     continue;
                 }
-                if (cateAux[i].equals(cateAux[i+1])){
+                if (cateAux[i].equals(cateAux[i+1])){ //Las ignora si están seguidas
                     continue;
                 }
                 System.out.println("* Categoria ["+cateAux[i]+"] - Cantidad Peliculas ["+contador+"]");
