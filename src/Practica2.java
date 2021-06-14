@@ -4,7 +4,7 @@ public class Practica2 {
 //---
 
     //--- Tamaño Máximo
-    final int TAMANIO_MAXIMO = 10; //Dimensión
+    final int TAMANIO_MAXIMO = 30; //Dimensión
 
     //--- Contadores - Reportes
     //int contadorClientes = 0, contadorPeliculas = 0, contadorPrestamos = 0;
