@@ -292,24 +292,28 @@ public class Practica2 {
 
     //--- Método para la cantidad de películas por cada categoría
     public void cantidadPeliCategorias(){
+        String[] cateAux = new String[TAMANIO_MAXIMO];
         int contador;
+
+        for (int i = 0; i < nuevaCate; i++) {
+            cateAux[i] = categorias[i]; //Copia
+        }
 
         if (nuevaCate != 0) {
             for (int i = 0; i < nuevaCate; i++) {
                 contador = 0;
                 for (int j = 0; j < nuevaCate; j++) {
-                    if (categorias[i].equals(categorias[j])){ //Si las categorías son iguales
-                        //categoAux[j] = categorias[j];
+                    if (cateAux[i].equals(categorias[j])){
                         contador++;
                     }
                 }
-                if (categorias[i] == null){ //Omitimos si en la categoría existe un "null" - No mostramos
+                if (cateAux[i] == null){
                     continue;
                 }
-                if (categorias[i].equals(categorias[i+1])){ //Si se repite igual omitimos
+                if (cateAux[i].equals(cateAux[i+1])){
                     continue;
                 }
-                System.out.println("*-* Categoria - ["+categorias[i]+"] - Cantidad Pelicula ["+contador+"] ");
+                System.out.println("* Categoria ["+cateAux[i]+"] - Cantidad Peliculas ["+contador+"]");
             }
         } else {
             System.out.println("* Aun no hay registro de peliculas *\n");
@@ -318,7 +322,11 @@ public class Practica2 {
 
     //--- Método para las películas dentro de una categoría
     public void peliculaEnCategoriaEspe(){
+        if (nuevaCate != 0) {
 
+        } else {
+            System.out.println("* Aun no hay registro de peliculas *\n");
+        }
     }
 
     //--- Método para establecer la cantidad de películas prestadas
@@ -353,6 +361,18 @@ public class Practica2 {
             }
         }
         return idRepetido;
+    }
+
+    //--- Método para verificar el ID - Clientes
+    public boolean verificarPelicula(String categoria){
+        boolean categoriaRepetida = false;
+
+        for (int i = 0; i < nuevaCate; i++) {
+            if (categorias[i].equals(categoria)){
+                categoriaRepetida = true;
+            }
+        }
+        return categoriaRepetida;
     }
 
     //--- Método para verificar el ID - Peliculas
