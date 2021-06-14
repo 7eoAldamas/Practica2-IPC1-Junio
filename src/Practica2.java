@@ -65,8 +65,8 @@ public class Practica2 {
                 case 6 -> { System.out.println("\n-----       Ingreso de Clientes (Crear)       -----"); crearClienteNuevo(); }
                 case 7 -> { System.out.println("\n-----       Mostrar Info. Clientes       -----"); mostrarInfoClientes(); }
                 case 8 -> { System.out.println("\n-----       Reportes       -----"); mostrarReportes(); }
-                case 9 -> { System.out.println("\n-----       Feliz Dia UwU       -----\n");}
-                default -> {System.out.println("\n-----       Error - Opcion Invalida :c       -----\n");}
+                case 9 ->  System.out.println("\n-----       Feliz Dia UwU       -----\n");
+                default -> System.out.println("\n-----       Error - Opcion Invalida :c       -----\n");
             }
         }while (opcion != 9);
     }
@@ -191,7 +191,7 @@ public class Practica2 {
                     "\t  Categoria: ["+categorias[i]+"] "+
                     "\t  Disponible: ["+disponible[i]+"] ");
         }
-        System.out.println("");
+        System.out.println();
     }
 
 //====================================================================================================================== Ordenar
@@ -217,7 +217,7 @@ public class Practica2 {
                 }
                 System.out.println("Nombre: [" + nombresPeliculas[i] + "]");
             }
-            System.out.println("");
+            System.out.println();
 
 
         } else {
@@ -268,7 +268,7 @@ public class Practica2 {
                     "\tTelefono: ["+telefonos[i]+"] "+
                     "\tPelicula Prestada: ["+prestados[i]+"] ");
         }
-        System.out.println("");
+        System.out.println();
     }
 //====================================================================================================================== Reportes
     //--- Método para mostrar Reportes
@@ -294,8 +294,8 @@ public class Practica2 {
                 case 3 -> { System.out.println("\n-----       Cantidad de Peliculas Prestadas       -----"); cantidadPeliPrestadas(); }
                 case 4 -> { System.out.println("\n-----       Pelicula mas prestada       -----"); peliculaMasPrestada(); }
                 case 5 -> { System.out.println("\n-----       Pelicula menos prestada       -----"); pelicularMenosPrestada(); }
-                case 6 -> { System.out.println("\n-----       Regresando       -----"); }
-                default -> {System.out.println("\n-----       Error - Opcion Invalida :c       -----\n");}
+                case 6 ->  System.out.println("\n-----       Regresando       -----");
+                default -> System.out.println("\n-----       Error - Opcion Invalida :c       -----\n");
             }
         }while (opcion != 6);
     }
@@ -325,7 +325,7 @@ public class Practica2 {
                 }
                 System.out.println("* Categoria ["+cateAux[i]+"] - Cantidad Peliculas ["+contador+"]");
             }
-            System.out.println("");
+            System.out.println();
         } else {
             System.out.println("* Aun no hay registro de peliculas *\n");
         }
@@ -333,7 +333,7 @@ public class Practica2 {
 
     //--- Método para las películas dentro de una categoría
     public void peliculaEnCategoriaEspe(){
-        String cateAux = "";
+        String cateAux;
 
         if (nuevaCate != 0) {
             sc.nextLine();
@@ -346,7 +346,7 @@ public class Practica2 {
                     System.out.println("*-*         "+nombresPeliculas[i]);
                 }
             }
-            System.out.println("");
+            System.out.println();
         } else {
             System.out.println("* Aun no hay registro de peliculas *\n");
         }
@@ -364,7 +364,7 @@ public class Practica2 {
                     "\t Pelicula: ["+nombresPeliculas[encontrarIDPelicula(idPelicula[i])]+"]" +
                     "\tCantidad de Dias: ["+cantDias[i]+"] ");
         }
-        System.out.println("");
+        System.out.println();
     }
 
     //--- Método de las películas más prestadas
@@ -401,8 +401,9 @@ public class Practica2 {
         boolean idRepetido = false;
 
         for (int i = 0; i < TAMANIO_MAXIMO; i++) {
-            if (idClientes[i] == id){
+            if (idClientes[i] == id) {
                 idRepetido = true;
+                break;
             }
         }
         return idRepetido;
@@ -413,8 +414,9 @@ public class Practica2 {
         boolean idRepetido = false;
 
         for (int i = 0; i < TAMANIO_MAXIMO; i++) {
-            if (idPeliculas[i] == id){
+            if (idPeliculas[i] == id) {
                 idRepetido = true;
+                break;
             }
         }
         return idRepetido;
