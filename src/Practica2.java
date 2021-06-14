@@ -323,17 +323,17 @@ public class Practica2 {
 
     //--- Método para las películas dentro de una categoría
     public void peliculaEnCategoriaEspe(){
-        sc = new Scanner(System.in);
         String cateAux = "";
 
         if (nuevaCate != 0) {
+            sc.nextLine();
             System.out.print("* Categoria: ");
             cateAux = sc.nextLine();
             System.out.println("*-* Categoria elegida ["+cateAux+"] ");
             System.out.println("*-* Lista: ");
             for (int i = 0; i < nuevaCate; i++) {
                 if (categorias[i].equals(cateAux)){
-                    System.out.println("     "+nombresPeliculas[i]);
+                    System.out.println("*-*         "+nombresPeliculas[i]);
                 }
             }
             System.out.println("");
@@ -510,5 +510,5 @@ public class Practica2 {
         }
         return idPelicula;
     }
-    
+
 }
