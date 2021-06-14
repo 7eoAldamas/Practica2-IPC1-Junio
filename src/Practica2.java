@@ -7,7 +7,7 @@ public class Practica2 {
     final int TAMANIO_MAXIMO = 10; //Dimensión
 
     //--- Contadores - Reportes
-    int contadorClientes = 0, contadorPeliculas = 0, contadorPrestamos = 0;
+    //int contadorClientes = 0, contadorPeliculas = 0, contadorPrestamos = 0;
 
     //--- Clientes
     int[] idClientes = new int[TAMANIO_MAXIMO];
@@ -96,7 +96,7 @@ public class Practica2 {
                 if (verificarExistenciaRenta(idCliente)){ //Si ID (Cliente) no tiene prestada ningúna película
                     System.out.print("* ID de la pelicula: ");
                     idPelicula = sc.nextInt();
-                    System.out.println("* Cantidad de dias de prestamo: ");
+                    System.out.print("* Cantidad de dias de prestamo: ");
                     cantidadDias = sc.nextInt();
                     asignarPrestamo(idCliente, idPelicula, cantidadDias);
                     System.out.println("*-*  Prestamo Completado  *-*");
@@ -124,9 +124,9 @@ public class Practica2 {
             idCliente = sc.nextInt();
             if (verificarCliente(idCliente)) {
                 if (verificarExistenciaRenta(idCliente)) {
-                    System.out.println("* Cliente no cuenta con un prestamo * - No necesita devolver nada -");
+                    System.out.print("* Cliente no cuenta con un prestamo * - No necesita devolver nada -");
                 } else {
-                    System.out.println("* ID de la pelicula: ");
+                    System.out.print("* ID de la pelicula: ");
                     idPelicula = sc.nextInt();
                     asignarDevolucion(idCliente, idPelicula);
                     System.out.println("*-* Devolucion completada *-*");
@@ -448,7 +448,6 @@ public class Practica2 {
         if (nuevoTel < TAMANIO_MAXIMO){
             this.telefonos[nuevoTel++] = telefono;
         }
-        contadorClientes++;
     }
 
     //--- Método complemento para crear Peliculas (Método Auxiliar)
@@ -465,7 +464,6 @@ public class Practica2 {
         if (nuevoDispo < TAMANIO_MAXIMO){
             this.disponible[nuevoDispo++] = true;
         }
-        contadorPeliculas++;
     }
 
     //--- Método complemento para crear el Préstamo de Películas
@@ -482,7 +480,6 @@ public class Practica2 {
         if (nuevoCantDias < TAMANIO_MAXIMO){
             this.cantDias[nuevoCantDias++] = canditidadDias;
         }
-        contadorPrestamos++;
     }
 
     //--- Método complemento para retornar una película prestada/rentada
