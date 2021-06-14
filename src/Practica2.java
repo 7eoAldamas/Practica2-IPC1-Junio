@@ -6,9 +6,6 @@ public class Practica2 {
     //--- Tamaño Máximo
     final int TAMANIO_MAXIMO = 30; //Dimensión
 
-    //--- Contadores - Reportes
-    //int contadorClientes = 0, contadorPeliculas = 0, contadorPrestamos = 0;
-
     //--- Clientes
     int[] idClientes = new int[TAMANIO_MAXIMO];
     String[] nombres = new String[TAMANIO_MAXIMO];
@@ -396,18 +393,6 @@ public class Practica2 {
             }
         }
         return idRepetido;
-    }
-
-    //--- Método para verificar el ID - Clientes
-    public boolean verificarPelicula(String categoria){
-        boolean categoriaRepetida = false;
-
-        for (int i = 0; i < nuevaCate; i++) {
-            if (categorias[i].equals(categoria)){
-                categoriaRepetida = true;
-            }
-        }
-        return categoriaRepetida;
     }
 
     //--- Método para verificar el ID - Peliculas
