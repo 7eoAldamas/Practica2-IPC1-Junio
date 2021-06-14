@@ -315,6 +315,7 @@ public class Practica2 {
                 }
                 System.out.println("* Categoria ["+cateAux[i]+"] - Cantidad Peliculas ["+contador+"]");
             }
+            System.out.println("");
         } else {
             System.out.println("* Aun no hay registro de peliculas *\n");
         }
@@ -335,6 +336,7 @@ public class Practica2 {
                     System.out.println("     "+nombresPeliculas[i]);
                 }
             }
+            System.out.println("");
         } else {
             System.out.println("* Aun no hay registro de peliculas *\n");
         }
@@ -357,12 +359,24 @@ public class Practica2 {
 
     //--- Método de las películas más prestadas
     public void peliculaMasPrestada(){
-
+        int masPrestada = idPelicula[0];
+        for (int i = 0; i < nuevoIDPelicula; i++) {
+            if (masPrestada < idPelicula[i]){
+                masPrestada = idPelicula[i];
+            }
+        }
+        System.out.println("* La pelicula más prestada es: ["+nombresPeliculas[encontrarIDPelicula(masPrestada)]+"]\n");
     }
 
     //--- Método de las películas menos prestadas
     public void pelicularMenosPrestada(){
-
+        int menosPrestada = idPelicula[0];
+        for (int i = 0; i < nuevoIDPelicula; i++) {
+            if (menosPrestada > idPelicula[i]){
+                menosPrestada = idPelicula[i];
+            }
+        }
+        System.out.println("* La pelicula menos prestada es: ["+nombresPeliculas[encontrarIDPelicula(menosPrestada)]+"]\n");
     }
 
     //------------------------------------------- MAIN
