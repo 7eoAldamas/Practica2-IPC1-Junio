@@ -87,7 +87,8 @@ public class Practica2 {
                 }
             }
 
-            System.out.println("\n* Ingrese el ID del cliente que prestara la pelicula: ");
+            System.out.println("* Prestamo de peliculas - Ingrese los siguintes datos *");
+            System.out.print("* ID Cliente: ");
             idCliente = sc.nextInt();
             if (verificarCliente(idCliente)){ //Si ID existe
                 if (verificarExistenciaRenta(idCliente)){ //Si ID (Cliente) no tiene prestada ningúna película
@@ -116,7 +117,19 @@ public class Practica2 {
         int idPelicula;
 
         if (nuevoIDCliente != 0) {
-            System.out.println("* Devolucion de peliculas - Ingrese los siguintes datos *");
+            System.out.println("* Lista de Peliculas Prestadas *");
+            for (int i = 0; i < TAMANIO_MAXIMO; i++) {
+                if (nombresPeliculas[i] == null){
+                    continue;
+                }
+                if (!disponible[i]){ // Si disponible = true
+                    System.out.println("ID ["+idPeliculas[i]+"]" +
+                            "\tNombre: ["+nombresPeliculas[i]+"]" +
+                            "\t  Categoria: ["+categorias[i]+"] ");
+                }
+            }
+
+            System.out.println("\n* Devolucion de peliculas - Ingrese los siguintes datos *");
             System.out.print("* ID Cliente: ");
             idCliente = sc.nextInt();
             if (verificarCliente(idCliente)) {
